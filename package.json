@@ -1,0 +1,23 @@
+{
+  "name": "pollit",
+  "version": "1.0.0",
+  "description": "An application which allows to create and manage polls",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/boopeshmahendran/Pollit.git"
+  },
+  "author": "Boopesh Mahendran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/boopeshmahendran/Pollit/issues"
+  },
+  "homepage": "https://github.com/boopeshmahendran/Pollit#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
