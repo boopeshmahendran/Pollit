@@ -15,11 +15,7 @@ user = {
   "username"        : "string",
   "email"           : "string",
   "password"        : "hash",
-  "created_polls"   : "[{
-    'question' : 'string',
-    'votes'    : 'number',
-    'id'       : 'poll ref'
-  }]",
+  "created_polls"   : "[poll refs]",
   "created_answers" : "[answer refs]"
 }
 ```
@@ -28,13 +24,9 @@ user = {
 poll = {
   "id"          : "ObjectId",
   "question"    : "string",
-  "answers"     : "[{
-    'id'    : 'answer ref',
-    'value' : 'string',
-    'votes' : 'number'
-    }]",
+  "answers"     : "[answer refs]",
   "votes"       : "number",
-  "created_by"  : "username",
+  "created_by"  : "user ref",
 }
 ```
 
@@ -44,14 +36,15 @@ answer = {
   "value"      : "string",
   "poll"       : "poll ref",
   "votes"      : "number",
-  "created_by" : "username"
+  "created_by" : "user ref"
 }
 ```
 
 ```json
 users_answered = {
-  "user_id" : "username",
-  "poll_id" : "poll ref"
+  "user"   : "user ref",
+  "poll"   : "poll ref",
+  "answer" : "answer ref"
 }
 ```
 
