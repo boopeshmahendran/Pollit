@@ -128,7 +128,7 @@ users_answered = {
    {
      "status" : "success | error",
      "polls"  : "List of polls",
-     "error"  : "server error | bad request" (if any)
+     "error"  : "server error" (if any)
    }
    ```
 
@@ -142,10 +142,14 @@ users_answered = {
        'id'         : 'ObjectId',
        'value'      : 'string',
        'votes'      : 'number'
-       'created_by' : 'username'
+       'created_by' : {
+         'username': 'string'
+       }
       }]",
       "votes"      : "number",
-      "created_by" : "username"
+      "created_by" : {
+        "username" : "string"
+      }
    }
    ```
 
@@ -166,7 +170,7 @@ users_answered = {
    ```json
    {
      "status" : "success | error",
-     "error"  : "user not authenticated | poll question already exists | bad request | server error" (if any)
+     "error"  : "user not authenticated | bad request | server error" (if any)
    }
    ```
 
@@ -187,7 +191,7 @@ users_answered = {
    ```json
    {
      "status" : "success | error",
-     "error"  : "answer already exists | user not authenticated | bad request | server error" (if any)
+     "error"  : "user not authenticated | poll_id does not exist | bad request | server error" (if any)
    }
    ```
 
@@ -201,16 +205,23 @@ users_answered = {
   {
     "status"     : "success | error",
     "error"      : "bad request | server error" (if any),
-    "id"         : "ObjectId",
-    "question"   : "string",
-    "answers"  : "[{
-      'id'         : 'ObjectId'
-      'value'      : 'string',
-      'votes'      : 'number'
-      'created_by' : 'username'
-    }]",
-    "votes"      : "number",
-    "created_by" : "username",
+    "poll"       : {
+      "id"         : "ObjectId",
+      "question"   : "string",
+      "answers"  : "[{
+        'id'         : 'ObjectId'
+        'value'      : 'string',
+        'votes'      : 'number'
+        'created_by' : {
+           'username': 'string'
+         }
+        }]",
+        "votes"      : "number",
+        "created_by" : {
+          "username": "string"
+        }
+      },
+    "answered_answer_id": "answer ref" (if user is authenticated)
   }
   ```
 
@@ -235,7 +246,7 @@ users_answered = {
    ```json
    {
      "status" : "success | error",
-     "error"  : "user not allowed | user not authenticated | bad request | server error" (if any)
+     "error"  : "user not authenticated | bad request | server error" (if any)
    }
    ```
 10. #### DELETE /answers/:answerid (only for authenticated users)
@@ -247,6 +258,16 @@ users_answered = {
    ```json
    {
      "status" : "success | error",
-     "error"  : "user not allowed | user not authenticated | bad request | server error" (if any)
+     "error"  : "user not authenticated | bad request | server error" (if any)
    }
    ```
+11. #### GET /users/logout
+
+    ##### Description
+    Logs out the user
+
+    ##### Response body
+    ```json
+    {
+      "status": "success"
+    }
