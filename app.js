@@ -15,8 +15,6 @@ const apiRoutes = require('./routes/api')
 
 const port = process.env.PORT || 3000
 
-app.use(express.static(path.join(__dirname, 'public')))
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
@@ -28,9 +26,6 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
-
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
 
 app.use('/api', apiRoutes)
 
